@@ -1,0 +1,6 @@
+4.median of two sorted arrays
+ 	  Median can divide array into to arrays with same length. We can choose the shorter array and use binary search.Searching i in [0, m], to find an object `in` that:B[j-1] <= A[i] and A[i-1] <= B[j], ( where j = (m + n + 1)/2 - i )
+	a.If(B[j-1] <= A[i] and A[i-1] <= B[j]) we find the median.
+	b.If(B[j-1]>A[i])  lo=mid+1;
+	c.Else hi=mid-1;
+
