@@ -1,6 +1,7 @@
 
-10.
+10.44.
 25.reverse nodes in group (write)
+34.Search for a Range(write)
 
 4.median of two sorted arrays
  	  Median can divide array into to arrays with same length. We can choose the shorter array and use binary search.Searching i in [0, m], to find an object `in` that:B[j-1] <= A[i] and A[i-1] <= B[j], ( where j = (m + n + 1)/2 - i )
@@ -24,3 +25,54 @@
 	a.start from the last element,find a[i]<a[i+1]
 	b.swap a[i] and the smallest element than larger than a[i] in a[i+1]~a[n-1]
 	c.reverse a[i+1]~a[n-1]
+
+40. Combination Sum II
+	for (int i = cur; i < cand.length; i++){
+       if (i > cur && cand[i] == cand[i-1]) continue;    
+       //每层只能用重复序列的第一个元素
+       backtracking
+    } //can avoid duplciate
+
+45. Jump Game II
+	count the farthest position every step can reach
+	when use bfs and input number[] like 5 4 3 2 1 1,it will cost n!
+
+47. Permutations II
+	to remove duplicate 
+	for(int i=0;i<nums.length;i++){
+		if(used[i]) continue;
+		if(i>0 &&nums[i-1]==nums[i] && !used[i-1]) continue;
+		// 对于 1 1 1 2 3 !used[i-1] 说明前一个1开头所组成的所有permutation已经
+		//全部写完了，所以要跳过，但是对下一层的使用没有影响（其实跟40题的效果一样）
+		backtracking;
+	}
+
+48. Rotate Image
+	clockwise rotate
+	first reverse up to down, then swap the symmetry 
+	 1 2 3     7 8 9     7 4 1
+	 4 5 6  => 4 5 6  => 8 5 2
+	 7 8 9     1 2 3     9 6 3
+	anticlockwise rotate
+	first reverse left to right,then swap the symmetry
+	1 2 3     3 2 1     3 6 9
+	4 5 6  => 6 5 4  => 2 5 8
+	7 8 9     9 8 7     1 4 7
+
+53. Maximum Subarray
+	use dp,dp[i] means the maximum subarray end at i.Thus dp[i+1]=(dp[i]>0? dp[i]:0)+nums[i+1];the max dp[i] is the answer
+
+56. Merge Intervals
+	sort intervals according their start points. the start point of next interval would <= or > end point of previous interval
+
+57. Insert Interval
+	a.add all the intervals ending before newInterval starts.
+	b.merge all overlapping intervals to one considering newInterval.
+		start=smallest start among overlapping intervals
+		end=largest end among overlapping intervals
+	c.add all the rest intervals to result
+
+  
+
+
+
