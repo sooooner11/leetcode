@@ -1,7 +1,9 @@
 
-10.44.
+10.44.89
 25.reverse nodes in group (write)
 34.Search for a Range(write)
+116.write
+
 
 4.median of two sorted arrays
  	  Median can divide array into to arrays with same length. We can choose the shorter array and use binary search.Searching i in [0, m], to find an object `in` that:B[j-1] <= A[i] and A[i-1] <= B[j], ( where j = (m + n + 1)/2 - i )
@@ -82,6 +84,79 @@
         }
         because we only use [i-1][j-1],[i-1][j] and [i][j-1], the code could be 
         optimized to O(n) space. temp=dp[i-1][j] ,pre=[i-1][j-1]
+
+
+91. Decode Ways
+    int dp[]=new int[n+1];
+    dp[0]=1;
+    dp[i]=dp[i-1]+((i=nums.length-1||nums(i+1)!=0)&&Integer.parserInt(s.substring(i-1,i+1))在10到26之间)？ dp[i-2]:0;
+
+98. Validate Binary Search Tree
+              10                 1
+             /  \               /
+            5    15            1 
+                /  \
+               6    20 
+    trees above is not a valid BST
+
+
+114. Flatten Binary Tree to Linked List
+
+	private TreeNode prev = null;
+	public void flatten(TreeNode root) {
+	    if (root == null)
+	        return;
+	    flatten(root.right);
+	    flatten(root.left);
+	    root.right = prev;
+	    root.left = null;
+	    prev = root;
+	}
+	将右边展开之后的root赋值给prev，brilliant solution
+
+Best Time to Buy and Sell Stock
+    T[i][k][1/0] i=day,k=transaction, 1/0 stock at hand 
+	1.transaction k=1
+		it means Ti00=0，
+		    for (int price : prices) {
+		        T_i10 = Math.max(T_i10, T_i11 + price);
+		        T_i11 = Math.max(T_i11, -price);
+		   	    }
+	2.k=Infinity
+	    T_ik1=Math.max(T_i(k-1)0-price,T_i(k-1)1);
+	        for (int price : prices) {
+		        int T_ik0_old = T_ik0;
+		        T_ik0 = Math.max(T_ik0, T_ik1 + price);
+		        T_ik1 = Math.max(T_ik1, T_ik0_old - price);
+	   		}
+	3.k=2
+		for (int price : prices) {
+	        T_i20 = Math.max(T_i20, T_i21 + price);
+	        T_i21 = Math.max(T_i21, T_i10 - price);
+	        T_i10 = Math.max(T_i10, T_i11 + price);
+	        T_i11 = Math.max(T_i11, -price);
+  		}
+  	4.with cooldown
+  		for (int price : prices) {
+	        int T_ik0_old = T_ik0;
+	        T_ik0 = Math.max(T_ik0, T_ik1 + price);
+	        T_ik1 = Math.max(T_ik1, T_ik0_pre - price);
+	        T_ik0_pre = T_ik0_old;
+    	}
+
+124. Binary Tree Maximum Path Sum
+	最大值也可能只包括单个节点，或者是节点加上左树或者右树
+
+128. Longest Consecutive Sequence
+	1.用map储存数字number[i]的连续长度。找到他number[i-1] 和 number[i+1]的长度，加起来就是number[i]的长度，并且跟新本连续序列两个端点的长度值
+	2.或者把所有的数字存入set中然后在一个个的拿出来，如果左右有相邻的，就跟着拿，并且统计长度。
+
+132. Palindrome Partitioning II
+	找到以每个char为中点的最长palindrome
+
+134. Gas Station
+	只要sumcost<=sumtotal,就一定能循环
+
 
 
 
