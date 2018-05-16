@@ -3,6 +3,7 @@
 25.reverse nodes in group (write)
 34.Search for a Range(write)
 116.write
+188. Best Time to Buy and Sell Stock IV(write)
 
 
 4.median of two sorted arrays
@@ -156,6 +157,50 @@ Best Time to Buy and Sell Stock
 
 134. Gas Station
 	只要sumcost<=sumtotal,就一定能循环
+
+137. Single Number II
+	    int ones = 0, twos = 0;
+		    for(int i = 0; i < A.length; i++){
+		        ones = (ones ^ A[i]) & ~twos;
+		        twos = (twos ^ A[i]) & ~ones;
+		    }
+	    return ones;
+	ones中的int的32位，为1就表示这一位出现了一次，如果大于1次或者是等于零次，就为0.
+	twos中的int的32位，为1就表示这一位出现了两次，如果大于2次或者小于两次，就为0.
+
+139. Word Break
+	a. dp
+	b. dfs with memo(在回答能不能或者最小最大步数这种，bfs和dp比dfs优秀，dfs时间效率n！，加上memo才能达到n^2/2)
+
+145. Binary Tree Three-order Traversal
+	就按照递归的思路写就行，只是注意preorder和postorder都需要set去记录是否已经访问该节点
+
+146. LRU Cache
+	hashmap中的val是一个数组，里面有val和重复的次数，
+
+148. Sort List
+	对于linkedlist merge sort只需要constant space，因为它不需要复制数组
+
+151. Reverse Words in a String
+	String s, s.trim()=remove the leading and trailing space;
+	s.split("\\s+") 按照多个空格和回车来分离s
+
+152. Maximum Product Subarray
+	数值零是分界线
+	其实就是看是偶数个负数，还是基数个负数，所以分别采用左边扫描和右边扫描
+
+155. Min Stack
+	用另外一个stack维持一个递减序列
+
+166. Fraction to Recurring Decimal
+	注意正负号和除数太大，被除数*10之后超限
+
+172. Factorial Trailing Zeroes
+	return n == 0 ? 0 : n / 5 + trailingZeroes(n / 5);
+
+179. Largest Number
+	比较String a+String b 和String b+String a的大小即可
+
 
 
 
